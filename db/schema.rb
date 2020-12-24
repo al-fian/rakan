@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_072157) do
+ActiveRecord::Schema.define(version: 2020_12_24_075826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "bonds", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -27,6 +28,15 @@ ActiveRecord::Schema.define(version: 2020_12_24_072157) do
   create_table "pictures", force: :cascade do |t|
     t.bigint "post_id"
     t.string "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "locale"
+    t.geometry "coordinate", limit: {:srid=>0, :type=>"st_point"}
+    t.string "name"
+    t.string "place_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

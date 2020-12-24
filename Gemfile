@@ -7,6 +7,8 @@ ruby '2.7.2'
 gem 'rails', '~> 6.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2', '>= 1.2.3'
+# Use postgis for marking locale coordinates
+gem 'activerecord-postgis-adapter', '~> 6.0', '>= 6.0.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
