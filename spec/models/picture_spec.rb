@@ -6,7 +6,11 @@
 #  caption    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  post_id    :bigint
+#  post_id    :bigint           not null
+#
+# Foreign Keys
+#
+#  fk_rails_...  (post_id => posts.id)
 #
 require 'rails_helper'
 

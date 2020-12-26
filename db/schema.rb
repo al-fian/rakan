@@ -26,19 +26,22 @@ ActiveRecord::Schema.define(version: 2020_12_24_081504) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.bigint "post_id"
+    t.bigint "post_id", null: false
     t.string "caption"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "places", force: :cascade do |t|
-    t.string "locale"
-    t.geometry "coordinate", limit: {:srid=>0, :type=>"st_point"}
-    t.string "name"
-    t.string "place_type"
+    t.string "locale", null: false
+    t.geography "coordinate", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :geographic=>true}, null: false
+    t.string "name", null: false
+    t.string "place_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["coordinate"], name: "index_places_on_coordinate", using: :gist
+    t.index ["locale", "coordinate"], name: "index_places_on_locale_and_coordinate", unique: true
+    t.index ["locale"], name: "index_places_on_locale"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -53,14 +56,14 @@ ActiveRecord::Schema.define(version: 2020_12_24_081504) do
 
   create_table "sights", force: :cascade do |t|
     t.bigint "place_id", null: false
-    t.string "activity_type"
+    t.string "activity_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["place_id"], name: "index_sights_on_place_id"
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.string "text"
+    t.string "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -79,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_081504) do
 
   add_foreign_key "bonds", "users"
   add_foreign_key "bonds", "users", column: "friend_id"
+  add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "posts", column: "thread_id"
   add_foreign_key "posts", "users"
   add_foreign_key "sights", "places"
