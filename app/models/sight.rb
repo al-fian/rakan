@@ -17,5 +17,12 @@
 #  fk_rails_...  (place_id => places.id)
 #
 class Sight < ApplicationRecord
+  ACTIVITY_TYPE = [
+    CHECKIN = "checkin",
+    CHECKOUT = "checkout"
+  ].freeze
+
   belongs_to :place
+
+  validates :activity_type, presence: true, inclusion: { in: ACTIVITY_TYPE }
 end
