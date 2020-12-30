@@ -35,4 +35,8 @@ class Bond < ApplicationRecord
   belongs_to :friend, class_name: "User"
 
   validates :state, presence: true
+
+  scope :following, -> { where(state: FOLLOWING) }
+  scope :requesting, -> { where(state: REQUESTING) }
+  scope :blocking, -> { where(state: BLOCKING) }
 end
