@@ -36,4 +36,25 @@ RSpec.describe Bond, type: :model do
       end
     end
   end
+
+  describe "#save" do
+    context "when complete data is given" do
+      it "can be persisted" do
+        user = User.create email: "email1@example.com",
+                           first_name: "Edwin", last_name: "Roberts",
+                           username: "email1"
+
+        friend = User.create email: "a1@example.com",
+                             first_name: "Ashley", last_name: "Beans",
+                             username: "abeans34"
+
+        bond = Bond.new(user: user, friend: friend, state: Bond::REQUESTING)
+
+        bond.save
+        expect(bond).to be_persisted
+        expect(bond.user).to eq user
+        expect(bond.friend).to eq friend
+      end
+    end
+  end
 end
