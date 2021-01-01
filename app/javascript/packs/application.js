@@ -17,5 +17,11 @@ require("channels")
 
 import "controllers"
 
-import "tailwindcss/tailwind.css"
+// import "tailwindcss/tailwind.css"
+// import "tailwindcss/base.css"
+// import "tailwindcss/components.css"
+// import "tailwindcss/utilities.css"
+// import "css/common.css"
+// import "css/session.css"
 
+import '../css/application'

@@ -5,7 +5,8 @@
              url: registration_path(resource_name)) do |f| %>
 
   <div class="form-group">
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "devise/shared/error_messages",
+               resource: resource %>
 
     <div class="flex flex-wrap -mx-3 mb-0 md:mb-4">
       <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
@@ -27,28 +28,18 @@
     </div>
 
     <div class="mb-4">
-      <%= f.label :email %><br />
-      <%= f.email_field :email,
-                        autofocus: true,
-                        autocomplete: "email",
-                        required: true %>
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true %>
     </div>
 
     <div class="mb-4">
       <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password,
-                           autocomplete: "new-password",
-                           required: true %>
+      <%= f.password_field :password, required: true %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation,
-                           autocomplete: "new-password",
-                           required: true %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
     </div>
 
     <%= f.submit "Sign up", class: "cta-btn" %>
@@ -56,7 +47,7 @@
 <% end %>
 
 <div class="text-center">
-  <p class="text-gray-500 text-sm">
+  <p class="text-grey-500 text-sm">
     Have an account?
     <%= link_to "Sign in", new_user_session_path %>.
   </p>
