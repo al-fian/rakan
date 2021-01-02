@@ -14,7 +14,7 @@ h1.title {
 
 .body-session
 .form-group {
-    @apply border-solid border-t-8 bg-white rounded-lg shadow-lg;
+    @apply border-main-default border-t-8 bg-white rounded-lg shadow-lg;
     @apply p-8 mb-6;
 }
 
@@ -56,7 +56,7 @@ a:hover {
 
 .body-session
 .cta-btn {
-    @apply select-none bg-contain text-white font-bold;
+    @apply select-none bg-main-default text-white font-bold;
     @apply rounded shadow;
     @apply py-2 px-4;
 }
