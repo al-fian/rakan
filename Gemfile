@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Authentication mechanism
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'evil_icons', '~> 1.10', '>= 1.10.1'
+gem 'premailer-rails', '~> 1.11'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
