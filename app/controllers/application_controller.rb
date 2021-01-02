@@ -4,21 +4,31 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def layout_by_resource
-      devise_controller? ? "session" : "application"
+  def member_controller?
+    return false if controller_path == "home"
+
+    true
+  end
+
+  def layout_by_resource
+    case
+    when devise_controller? then "session"
+    when member_controller? then "member"
+    else "application"
     end
+  end
 
   protected
 
-    def config_devise_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [
-        :first_name,
-        :last_name,
-        :username,
-        :email,
-        :password,
-        :password_confirmation
-      ])
-    end
+  def config_devise_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
+      :first_name,
+      :last_name,
+      :username,
+      :email,
+      :password,
+      :password_confirmation
+    ])
+  end
 
 end
